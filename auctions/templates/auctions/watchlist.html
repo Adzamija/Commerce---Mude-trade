@@ -1,0 +1,28 @@
+{% extends "auctions/layout.html" %}
+{% block title %}Watchlist{% endblock %}
+{% block body %}
+    <h2>Watchlist</h2>
+    <div class="container">
+        <p>
+            <div class="container">
+                {% if no_item %} 
+                    <div>
+                        <p>No items in watchlist. Go to <a href="{% url 'index' %}">Active Listings</a> page and add items.</p>
+                    </div>
+                {% else %}
+                    {% for item in items %}
+                            <div class="row border border-1 mt-3">
+                                <div class="col-sm-3 pt-5"><a class="" href="{% url 'item' item.id %}"><img src="{{ item.photo }}" width = "100%" alt=""></a></div>
+                                <div class="col-sm-9 pt-5">
+                                    <h4><strong><a href="{% url 'item' item.id %}" class="link-dark">{{ item.title }}</a></strong></h4>
+                                    <p><strong>Price:</strong>  ${{ item.price }} </p>
+                                    <p class="fw-lighter">Created: {{ item.time }}</p>
+                                </div>
+                            </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </p>
+    </div>
+    
+{% endblock %}

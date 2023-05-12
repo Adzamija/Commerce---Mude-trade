@@ -1,0 +1,41 @@
+{% extends "auctions/layout.html" %} 
+    {% block title%} Closed item {% endblock %}
+    {% block body  %} 
+        <div class="container">
+            <h2>Closed item: {{ item.title }}</h2>
+            <p><img src="{{ item.photo }}" alt="{{ item.title }}"></p>
+            <p>{{ item.description }}</p>
+            <p><h2>
+                {% if last_price %}
+                    ${{ last_price }}.00
+                {% else %} 
+                    ${{ item.price }}.00
+                {% endif %}
+            </h2></p>
+            <p>
+                {% if message %}
+                <h4>The winner of auctions is: {{ winner }}.</h4>
+                {% else %}
+                <h4>{{ winner }}</h4>
+                {% endif %}
+            </p>
+            <p>
+                <h3>Details</h3>
+                <ul>
+                    <li>Listed by: <a href="{% url 'user' item.user %}">{{ item.user }}</a></li>
+                    <li>Category: <a href="{% url 'category' item.category %}">{{ item.category | capfirst }}</a></li>
+                </ul>
+            </p>
+            <p>
+                <h3>Comments</h3>
+                <ul>
+                    {% for comment in all_comments %}
+                        <li><strong>{{ comment.user }}:</strong> {{ comment.comment }}</li>
+                    {% empty %}
+                        <li>This item does not have any comment.</li>
+                    {% endfor %}
+                </ul>
+            </p>
+        </div>
+
+    {% endblock %}

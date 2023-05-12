@@ -1,0 +1,25 @@
+{% extends "auctions/layout.html" %}
+{% block title %}Listings{% endblock %}
+{% block body %}
+    <h2>Closed Listings</h2>
+    <div class="container">
+        <p>
+            <div class="container">
+                {% for item in items %}
+                    <div class="row border border-1 mt-3">
+                        <div class="col-sm-3 pt-5"><a class="" href="{% url 'closed' item.id %}"><img src="{{ item.photo }}" width = "100%" alt=""></a></div>
+                        <div class="col-sm-9 pt-5">
+                            <h4><strong><a href="{% url 'closed' item.id %}" class="link-dark">{{ item.title }}</a></strong></h4>
+                            <p class="fw-lighter">Created: {{ item.time }}</p>
+                        </div>
+                    </div>
+                {% empty %} 
+                    <ul>
+                        <li>There is no closed items.</li>
+                    </ul>
+                {% endfor %}
+            </div>
+        </p>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "auctions/layout.html" %}
+{% block title %}Listings{% endblock %}
+{% block body %}
+    <h2>{{ item.category | capfirst }}</h2>
+    <div class="container">
+        <p>
+            <div class="container">
+                {% for item in items %}
+                    {% if item.status %} 
+                        <div class="row border border-1 mt-3">
+                            <div class="col-sm-3 pt-5"><a class="" href="{% url 'item' item.id %}"><img src="{{ item.photo }}" width = "100%" alt=""></a></div>
+                            <div class="col-sm-9 pt-5">
+                                <h4><strong><a href="{% url 'item' item.id %}" class="link-dark">{{ item.title }}</a></strong></h4>
+                                <p><strong>Price:</strong>  ${{ item.price }} </p>
+                                <p class="fw-lighter">Created: {{ item.time }}</p>
+                            </div>
+                        </div>
+                    {% endif %} 
+                {% endfor %}
+            </div>
+        </p>
+    </div>
+    
+{% endblock %}

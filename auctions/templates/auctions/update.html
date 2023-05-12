@@ -1,0 +1,10 @@
+{% extends "auctions/layout.html" %} 
+{% block title %}Edit item{% endblock %}
+    {% block body  %} 
+    <h2>Edit Item</h2>
+    <form action="{% url 'update' id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Edit Item</button>
+    </form>
+    {% endblock %}
